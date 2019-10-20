@@ -14,8 +14,12 @@ public class StartGame {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-
-		System.out.println("Game is a Work In Progress...\nPlease Wait for a Future Anouncement");
+		
+		// Doing some testing to see if the RoomSetup.java is working right
+		RoomSetup m = new RoomSetup();
+		
+		m.initializeLevel();
+		System.out.println(m.getAllRooms());
 	}
 
 }
