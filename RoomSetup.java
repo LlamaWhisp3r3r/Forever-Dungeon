@@ -127,29 +127,39 @@ public class RoomSetup {
 			currentRoom = "Start";	
 			System.out.println("Created Start Room");
 		} 
-		// Gets the current room in a really weird way
+		// Gets a Random Room for the current Room
+		// Compared to early code this makes the run more random.
 		else if(!totalRoomsAdded.isEmpty()) {
-			for(int i=0; i < totalRoomsAdded.size(); i++) {
-				boolean roomInCurrent = false;
-				if(totalRoomsAdded.get(i) != currentRoom) {
-					for(int k=0; k < currentRoomList.length; k++) {
-						if(currentRoomList[k] == totalRoomsAdded.get(i)) {
-							roomInCurrent = true;
-						}
-					}
-					if(!roomInCurrent) {
-						currentRoom = totalRoomsAdded.get(i);
-						for(int g=0; g < currentRoomList.length; g++) {
-							if(currentRoomList[g] == null) {
-								System.out.println("Changed Current Room to: " + totalRoomsAdded.get(i));
-								currentRoomList[g] = totalRoomsAdded.get(i);
-								break;
-							}
-						}
-					}
-				}
-			}
+			int place = totalRoomsAdded.size();
+			place = rand.nextInt(place);
+			currentRoom = totalRoomsAdded.get(place);
 		}
+		
+		// Gets the current room in a really weird way
+//		else if(!totalRoomsAdded.isEmpty()) {
+//			for(int i=0; i < totalRoomsAdded.size(); i++) {
+//				boolean roomInCurrent = false;
+//				if(totalRoomsAdded.get(i) != currentRoom) {
+//					for(int k=0; k < currentRoomList.length; k++) {
+//						if(currentRoomList[k] == totalRoomsAdded.get(i)) {
+//							roomInCurrent = true;
+//						}
+//					}
+//					if(!roomInCurrent) {
+//						currentRoom = totalRoomsAdded.get(i);
+//						for(int g=0; g < currentRoomList.length; g++) {
+//							if(currentRoomList[g] == null) {
+//								System.out.println("Changed Current Room to: " + totalRoomsAdded.get(i));
+//								currentRoomList[g] = totalRoomsAdded.get(i);
+//								break;
+//							}
+//						}
+//					}
+//				}
+//			}
+//		}
+		
+		
 		
 		// Now does some math to see where it should put rooms
 		for(int i=0; i < directions.length; i++) {
