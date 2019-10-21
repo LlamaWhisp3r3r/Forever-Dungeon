@@ -19,7 +19,7 @@ public class StartGame {
 		RoomSetup m = new RoomSetup();
 		
 		m.initializeLevel();
-		System.out.println(m.getAllRooms());
+		m.playRoom("start");
 	}
 
 }
