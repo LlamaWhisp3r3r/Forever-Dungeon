@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 /**
  * Starts the Game
@@ -19,7 +20,7 @@ public class StartGame {
 		RoomSetup m = new RoomSetup();
 		
 		m.initializeLevel();
-		m.playRoom("start");
+		m.getRoom("start");
 	}
 
 }
