@@ -66,49 +66,34 @@ public class RoomSetup {
 	}
 	
 	
-//	public void playRoom(String room) {
-//		List<String> directions = getRoom(room);
-//		roomsVisted.add(room);
-////		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-//		System.out.println("\n\n\n\n\n\n\n\n\n");
-//		System.out.println("Welcome to the " + getRoomName() + " room");
-//		System.out.println("There are rooms to your " + directions);
-//		System.out.println("Which Direction would you like to go to?");
-//		String answer = scan.nextLine();
-//		
-//		if(answer.equalsIgnoreCase("right")) {
-//			char r = answer.toLowerCase().charAt(0);
-//			String roomName = getRoom(room, r);
-//			playRoom(roomName);
-//		}else if(answer.equalsIgnoreCase("up")) {
-//			char r = answer.toLowerCase().charAt(0);
-//			String roomName = getRoom(room, r);
-//			playRoom(roomName);
-//		}else if(answer.equalsIgnoreCase("down")) {
-//			char r = answer.toLowerCase().charAt(0);
-//			String roomName = getRoom(room, r);
-//			playRoom(roomName);
-//		}else if(answer.equalsIgnoreCase("left")) {
-//			char r = answer.toLowerCase().charAt(0);
-//			String roomName = getRoom(room, r);
-//			playRoom(roomName);
-//		}
-//		
-//	}
-	
-	
-	/**
-	 * Gets everything in the room so that the player can
-	 * See what's in it
-	 * 
-	 * @return roomList
-	 */
-	public List<String> getRoom(String room) {
-		System.out.println(allRooms.toString());
-		System.out.println(allRooms.get(room).toString());
+	public void playRoom(String room) {
+		List<String> directions = getRoom(room);
+		roomsVisted.add(room);
+//		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+		System.out.println("\n\n\n\n\n\n\n\n\n");
+		System.out.println("Welcome to the " + getRoomName() + " room");
+		System.out.println("There are rooms to your " + directions);
+		System.out.println("Which Direction would you like to go to?");
+		String answer = scan.nextLine();
 		
-		List<String> currentRoom = allRooms.get(room);
-		return currentRoom;
+		if(answer.equalsIgnoreCase("right")) {
+			char r = answer.toLowerCase().charAt(0);
+			String roomName = getRoom(room, r);
+			playRoom(roomName);
+		}else if(answer.equalsIgnoreCase("up")) {
+			char r = answer.toLowerCase().charAt(0);
+			String roomName = getRoom(room, r);
+			playRoom(roomName);
+		}else if(answer.equalsIgnoreCase("down")) {
+			char r = answer.toLowerCase().charAt(0);
+			String roomName = getRoom(room, r);
+			playRoom(roomName);
+		}else if(answer.equalsIgnoreCase("left")) {
+			char r = answer.toLowerCase().charAt(0);
+			String roomName = getRoom(room, r);
+			playRoom(roomName);
+		}
+		
 	}
 	
 	
@@ -118,39 +103,63 @@ public class RoomSetup {
 	 * 
 	 * @return roomList
 	 */
-//	private String getRoom(String room, char direction) {
-//		// Use this method to play a room and go to other rooms connected to it		
-//		
-//		
-//		//TODO: Add comments to this mess 
-//		System.out.println(allRooms.toString());
-//		List<String> currentRoom = new ArrayList<String>();
-//		Iterator<String> y = allRooms.keySet().iterator();
-//		for(int i=0; i < allRooms.size(); i++) {
-//			String couldBeRoom = y.next();
-//			if(!(couldBeRoom.indexOf(':') == -1)) {
-//				int colon = couldBeRoom.indexOf(':');
-//				String newRoom = couldBeRoom.substring(0, colon);
-//				if(newRoom.equals(room)) {
-//					System.out.println(allRooms.get(couldBeRoom));
-//					if(direction == 'u') {
-//						currentRoom.add(allRooms.get(couldBeRoom));
-//					}
-//					else if(direction == 'r') {
-//						currentRoom.add(allRooms.get(couldBeRoom));	
-//					}
-//					else if(direction == 'd') {
-//						currentRoom.add(allRooms.get(couldBeRoom));
-//					}
-//					else if(direction == 'l') {
-//						currentRoom.add(allRooms.get(couldBeRoom));
-//					}
-//				}
-//			}
-//		}
-//		
-//		return currentRoom.get(0);
-//	}
+	public List<String> getRoom(String room) {
+
+		
+		List<String> currentRoom = allRooms.get(room);
+		List<String> m = new ArrayList<String>();
+		if(!currentRoom.isEmpty()) {
+			for(String man : currentRoom) {
+				System.out.println(man);
+				char s = man.charAt(0);
+				if(s == 'u') {
+					m.add("Up");
+				}else if(s == 'r') {
+					m.add("Right");
+				}else if(s == 'd') {
+					m.add("Down");
+				}else if(s == 'l') {
+					m.add("Left");
+				}
+				
+			}
+		}else {
+			m.add("No Rooms");
+		}
+		return m;
+	}
+	
+	
+	/**
+	 * Gets everything in the room so that the player can
+	 * See what's in it
+	 * 
+	 * @return roomList
+	 */
+	private String getRoom(String room, char direction) {
+		// Use this method to play a room and go to other rooms connected to it		
+		List<String> currentRoom = allRooms.get(room);
+		String newRoom = "Empty";
+		for(String m : currentRoom) {
+			char s = m.charAt(0);
+			if(s == direction) {
+				newRoom = m;
+				break;
+			}else if(s == direction) {
+				newRoom = m;
+				break;
+			}else if(s == direction) {
+				newRoom = m;
+				break;
+			}else if(s == direction) {
+				newRoom = m;
+				break;
+			}
+		}
+		
+		return newRoom;
+		
+	}
 	
 	
 	/**
@@ -200,8 +209,12 @@ public class RoomSetup {
 			return;
 		}
 		
+		System.out.println("Current Room is: " + currentRoom);
+		System.out.println("total Rooms Added Empty? " + totalRoomsAdded.isEmpty());
+		System.out.println("allRooms contains current room? " + allRooms.containsKey(currentRoom));
+		
 		// Adds a middle room for sure every time it creates a level
-		if(!allRooms.containsKey("start")) {
+		if(!totalRoomsAdded.contains("start")) {
 			totalRoomsAdded.add("start");
 			allRooms.put("start", totalRoomsAdded); // adds to list
 			currentRoom = "start";
@@ -209,19 +222,20 @@ public class RoomSetup {
 			System.out.println("Created Start Room");
 			
 		}else if(!totalRoomsAdded.isEmpty() && allRooms.containsKey(currentRoom)) { // Gets a Random Room for the current Room
-			int place = totalRoomsAdded.size();
-			place = rand.nextInt(place);
-			// Checks if the room picked is in the current room list
-			if(!currentRoomList.contains(totalRoomsAdded.get(place))) {
-				System.out.println("Current Room was changed to: " + totalRoomsAdded.get(place));
-				currentRoom = totalRoomsAdded.get(place); // changes the current room 
-				currentRoomList.add(totalRoomsAdded.get(place)); // adds the current room to the list
+			for(int i=0; i < totalRoomsAdded.size(); i++) {
+				// Checks if the room picked is in the current room list
+				if(!currentRoomList.contains(totalRoomsAdded.get(i))) {
+					System.out.println("Current Room was changed to: " + totalRoomsAdded.get(i));
+					currentRoom = totalRoomsAdded.get(i); // changes the current room 
+					currentRoomList.add(totalRoomsAdded.get(i)); // adds the current room to the list
+				}
 			}
 		}
 		
 		// Now does some math to see where it should put rooms
 		List<String> currentRoomRooms = new ArrayList<String>(); // An array to hold everything together
 		currentRoomRooms.clear();
+		System.out.println("Current Room Now: " + currentRoomRooms);
 		
 		for(int i=0; i < directions.length; i++) {
 			
@@ -250,17 +264,7 @@ public class RoomSetup {
 			}
 		}	
 		
-		
-		// Checks if the system created any rooms within the current room
-		if(currentRoomRooms.isEmpty() && roomNumber < roomsPerLevel) {
-			roomNumber += 1;
-			String ran = directions[random(3)] + rotation('u'); // A String object used for storing room names
-			currentRoomRooms.add(ran); // Adds the room to the list
-			totalRoomsAdded.add(ran); // Adds the room to the list
-			System.out.println("Created my own room at: " + ran);
-		}
-		
-
+		System.out.println("Current Room Before: " + currentRoomRooms);
 		if(!currentRoomRooms.isEmpty()) {
 			allRooms.put(currentRoom, currentRoomRooms);
 			System.out.println(currentRoomRooms);
@@ -268,50 +272,58 @@ public class RoomSetup {
 			System.out.println("Total Rooms: " + totalRoomsAdded.toString());
 			System.out.println("Starting Over");
 			initializeLevel(); // Goes back to the start all over again
-		}if(currentRoomRooms.isEmpty()) {
-			System.out.println(roomNumber);
-			System.out.println("Error!");
-		}
+		}else if(currentRoomRooms.isEmpty()) {
+			if(roomNumber < roomsPerLevel) {
+				roomNumber += 1;
+				String ran = directions[random(3)] + rotation('u'); // A String object used for storing room names
+				currentRoomRooms.add(ran); // Adds the room to the list
+				totalRoomsAdded.add(ran); // Adds the room to the list
+				System.out.println("Created my own room at: " + ran);
+			}
 		
-		// Checks if the boss room is on the level
-		if(!totalRoomsAdded.contains("boss") && roomNumber < roomsPerLevel) {
-			// For loop that goes through all the totalRoomsAdded items to see if they are in the currentRoom list
-			for(int i=0; i < totalRoomsAdded.size(); i++) {
-				int random = rand.nextInt(totalRoomsAdded.size()); // get a random number in the range of the array's size
-				// If statement that checks if the current room list contains the totalRoomsAdded
-				if(!currentRoomList.contains(totalRoomsAdded.get(random))) {
-					int x = random(3); // Gets random number on range of 3
-					currentRoom = totalRoomsAdded.get(random);
-					currentRoomRooms.add(directions[x] + "-boss"); // Adds to List
-					totalRoomsAdded.add("boss"); // Adds to List
-					System.out.println("Added Boss Room By Default At Room: " + totalRoomsAdded.get(random));
-					break; // Breaks off of loop
+			
+			// Checks if the boss room is on the level
+			if(!totalRoomsAdded.contains("boss") && roomNumber > roomsPerLevel) {
+				// For loop that goes through all the totalRoomsAdded items to see if they are in the currentRoom list
+				for(int i=0; i < totalRoomsAdded.size(); i++) {
+					int random = rand.nextInt(totalRoomsAdded.size()); // get a random number in the range of the array's size
+					// If statement that checks if the current room list contains the totalRoomsAdded
+					if(!currentRoomList.contains(totalRoomsAdded.get(random))) {
+						int x = random(3); // Gets random number on range of 3
+						currentRoom = totalRoomsAdded.get(random);
+						currentRoomRooms.add(directions[x] + "-boss"); // Adds to List
+						totalRoomsAdded.add("boss"); // Adds to List
+						System.out.println("Added Boss Room By Default At Room: " + totalRoomsAdded.get(random));
+						break; // Breaks off of loop
+					}
 				}
 			}
-		}
-		// Checks if the shop room is in the level
-		if(!totalRoomsAdded.contains("shop") && roomNumber < roomsPerLevel) {
-			// For loop that goes through all the totalRoomsAdded items to see if they are in the currentRoom list
-			for(int i=0; i < totalRoomsAdded.size(); i++) {
-				int random = rand.nextInt(totalRoomsAdded.size()); // get a random number in the range of the array's size
-				// If statement that checks if the current room list contains the totalRoomsAdded
-				if(!currentRoomList.contains(totalRoomsAdded.get(random))) {
-					int x = random(3); // Gets random number in range of 3
-					currentRoom = totalRoomsAdded.get(random);
-					currentRoomRooms.add(directions[x] + "-shop"); // Adds to list
-					totalRoomsAdded.add("shop"); // Adds to list
-					System.out.println("Added Shop Room By Default At Room: " + totalRoomsAdded.get(random));
-					break; // breaks off of loop
+			// Checks if the shop room is in the level
+			if(!totalRoomsAdded.contains("shop") && roomNumber < roomsPerLevel) {
+				// For loop that goes through all the totalRoomsAdded items to see if they are in the currentRoom list
+				for(int i=0; i < totalRoomsAdded.size(); i++) {
+					int random = rand.nextInt(totalRoomsAdded.size()); // get a random number in the range of the array's size
+					// If statement that checks if the current room list contains the totalRoomsAdded
+					if(!currentRoomList.contains(totalRoomsAdded.get(random))) {
+						int x = random(3); // Gets random number in range of 3
+						currentRoom = totalRoomsAdded.get(random);
+						currentRoomRooms.add(directions[x] + "-shop"); // Adds to list
+						totalRoomsAdded.add("shop"); // Adds to list
+						System.out.println("Added Shop Room By Default At Room: " + totalRoomsAdded.get(random));
+						break; // breaks off of loop
+					}
 				}
 			}
-		}
-		
-		if(!currentRoomRooms.isEmpty()) {
-			System.out.println("Got Down Here");
-			allRooms.put(currentRoom, currentRoomRooms);
+			if(!currentRoomRooms.isEmpty()) {
+				allRooms.put(currentRoom, currentRoomRooms);
+				System.out.println(currentRoomRooms);
+				System.out.println("all Rooms: " + allRooms.toString());
+				System.out.println("Total Rooms: " + totalRoomsAdded.toString());
+				System.out.println("Starting Over");
+				initializeLevel(); // Goes back to the start all over again
+			}
 		}else {
-			System.out.println("Somethings Wrong...");
-			return;
+			System.out.println("I don't know what happen...");
 		}
 	}
 	
