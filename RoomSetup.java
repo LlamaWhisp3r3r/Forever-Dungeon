@@ -66,6 +66,7 @@ public class RoomSetup {
 	}
 	
 	
+	@SuppressWarnings("unlikely-arg-type")
 	public void playRoom(String room) {
 		List<String> directions = getRoom(room);
 		roomsVisted.add(room);
@@ -75,25 +76,34 @@ public class RoomSetup {
 		System.out.println("There are rooms to your " + directions);
 		System.out.println("Which Direction would you like to go to?");
 		String answer = scan.nextLine();
+		char r = answer.toLowerCase().charAt(0);
+		String roomName = getRoom(room, r);
+		System.out.println(roomExist(roomName));
+
 		
-		if(answer.equalsIgnoreCase("right")) {
-			char r = answer.toLowerCase().charAt(0);
-			String roomName = getRoom(room, r);
+		if(answer.equalsIgnoreCase("right") && roomExist(roomName) == true) {
 			playRoom(roomName);
-		}else if(answer.equalsIgnoreCase("up")) {
-			char r = answer.toLowerCase().charAt(0);
-			String roomName = getRoom(room, r);
+		}else if(answer.equalsIgnoreCase("up") && roomExist(roomName) == true) {
 			playRoom(roomName);
-		}else if(answer.equalsIgnoreCase("down")) {
-			char r = answer.toLowerCase().charAt(0);
-			String roomName = getRoom(room, r);
+		}else if(answer.equalsIgnoreCase("down") && roomExist(roomName) == true) {
 			playRoom(roomName);
-		}else if(answer.equalsIgnoreCase("left")) {
-			char r = answer.toLowerCase().charAt(0);
-			String roomName = getRoom(room, r);
+		}else if(answer.equalsIgnoreCase("left") && roomExist(roomName) == true) {
 			playRoom(roomName);
+		}else if(!roomExist(roomName)) {
+			System.out.println("***Invalid Use***\nPlease Enter: [right, left, down, or up]\nRoom May Also Not Exist");
+			playRoom(room);
 		}
 		
+	}
+	
+	
+	private boolean roomExist(String room) {
+		boolean m = true;
+		System.out.println(allRooms.get(room));
+		if(allRooms.get(room) == null) {
+			m = false;
+		}
+		return m;
 	}
 	
 	
@@ -108,7 +118,8 @@ public class RoomSetup {
 		
 		List<String> currentRoom = allRooms.get(room);
 		List<String> m = new ArrayList<String>();
-		if(!currentRoom.isEmpty()) {
+		m.clear();
+		if(currentRoom != null) {
 			for(String man : currentRoom) {
 				System.out.println(man);
 				char s = man.charAt(0);
@@ -140,22 +151,25 @@ public class RoomSetup {
 		// Use this method to play a room and go to other rooms connected to it		
 		List<String> currentRoom = allRooms.get(room);
 		String newRoom = "Empty";
-		for(String m : currentRoom) {
-			char s = m.charAt(0);
-			if(s == direction) {
-				newRoom = m;
-				break;
-			}else if(s == direction) {
-				newRoom = m;
-				break;
-			}else if(s == direction) {
-				newRoom = m;
-				break;
-			}else if(s == direction) {
-				newRoom = m;
-				break;
+		if(!currentRoom.isEmpty()) {
+			for(String m : currentRoom) {
+				char s = m.charAt(0);
+				if(s == direction) {
+					newRoom = m;
+					break;
+				}else if(s == direction) {
+					newRoom = m;
+					break;
+				}else if(s == direction) {
+					newRoom = m;
+					break;
+				}else if(s == direction) {
+					newRoom = m;
+					break;
+				}
 			}
 		}
+		
 		
 		return newRoom;
 		
