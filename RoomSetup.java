@@ -137,6 +137,11 @@ public class RoomSetup {
 	 */
 	public List<String> getRoom(String room) {
 		
+		// Checks if the room is a boss or shop room
+		if(room.substring(2).equals("boss") || room.substring(2).equals("shop")) {
+			// Sets room to the value it will be compared with
+			room = room.substring(2);
+		}
 		// Sets some objects for later use
 		List<String> currentRoom = allRooms.get(room);
 		List<String> m = new ArrayList<String>();
@@ -183,33 +188,36 @@ public class RoomSetup {
 		String newRoom = "Empty";
 		
 		// Checks if currentRoom is empty or not
-		if(!currentRoom.isEmpty()) {
-			// For all the rooms in currentRoom
-			for(String m : currentRoom) {
-				// Gets beginning character of room in currentRoom
-				char s = m.charAt(0);
-				
-				// Checks what the direction the use entered is
-				if(s == direction) {
-					// Sets newRoom to the actual room
-					newRoom = m;
-					// Breaks out of for loop
-					break;
-				}else if(s == direction) {
-					// Sets newRoom to the actual room
-					newRoom = m;
-					// Breaks out of for loop
-					break;
-				}else if(s == direction) {
-					// Sets newRoom to the actual room
-					newRoom = m;
-					// Breaks out of for loop
-					break;
-				}else if(s == direction) {
-					// Sets newRoom to the actual room
-					newRoom = m;
-					// Breaks out of for loop
-					break;
+		
+		if(currentRoom != null) {
+			if(!currentRoom.isEmpty()) {
+				// For all the rooms in currentRoom
+				for(String m : currentRoom) {
+					// Gets beginning character of room in currentRoom
+					char s = m.charAt(0);
+					
+					// Checks what the direction the use entered is
+					if(s == direction) {
+						// Sets newRoom to the actual room
+						newRoom = m;
+						// Breaks out of for loop
+						break;
+					}else if(s == direction) {
+						// Sets newRoom to the actual room
+						newRoom = m;
+						// Breaks out of for loop
+						break;
+					}else if(s == direction) {
+						// Sets newRoom to the actual room
+						newRoom = m;
+						// Breaks out of for loop
+						break;
+					}else if(s == direction) {
+						// Sets newRoom to the actual room
+						newRoom = m;
+						// Breaks out of for loop
+						break;
+					}
 				}
 			}
 		}
