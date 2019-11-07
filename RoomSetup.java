@@ -2,11 +2,9 @@
 import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.Set;
 
 /**
  * Setups up the Rooms for a level & updates room's value
@@ -73,9 +71,11 @@ public class RoomSetup {
 	 */
 	public void playRoom(String room) {
 		List<String> directions = getRoom(room);
-		roomsVisted.add(room);
-//		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-		System.out.println("\n\n\n\n\n\n\n\n\n");
+		if(!roomsVisted.contains(room)) {
+			roomsVisted.add(room);
+
+		}
+		System.out.println("\n\n\n------------------\n\n\n");
 		System.out.println("Welcome to the " + getRoomName() + " room");
 		System.out.println("There are rooms to your " + directions);
 		System.out.println("Which Direction would you like to go to?");
@@ -86,16 +86,25 @@ public class RoomSetup {
 		System.out.println(roomExist(roomName));
 
 		
-		if(answer.equalsIgnoreCase("right") && roomExist(roomName) == true) {
+		if(answer.equalsIgnoreCase("right") && roomExist(roomName)) {
 			playRoom(roomName);
-		}else if(answer.equalsIgnoreCase("up") && roomExist(roomName) == true) {
+		}else if(answer.equalsIgnoreCase("up") && roomExist(roomName)) {
 			playRoom(roomName);
-		}else if(answer.equalsIgnoreCase("down") && roomExist(roomName) == true) {
+		}else if(answer.equalsIgnoreCase("down") && roomExist(roomName)) {
 			playRoom(roomName);
-		}else if(answer.equalsIgnoreCase("left") && roomExist(roomName) == true) {
+		}else if(answer.equalsIgnoreCase("left") && roomExist(roomName)) {
 			playRoom(roomName);
+		}else if(answer.equalsIgnoreCase("back")) {
+			System.out.println("Which room would you like to go to?");
+			System.out.println("They are listed in order of when you entered.");
+			System.out.println("[HINT]: The first letter is the direction from the room\nRooms Visted Are:");
+			System.out.println(roomsVisted);
+			String nextRoom2 = scan.nextLine();
+			if(roomExist(nextRoom2)) {
+				playRoom(nextRoom2);
+			}
 		}else if(!roomExist(roomName)) {
-			System.out.println("***Invalid Use***\nPlease Enter: [right, left, down, or up]\nRoom May Also Not Exist");
+			System.out.println("***Invalid Use***\nPlease Enter: [right, left, down, up, or back]\nRoom May Also Not Exist");
 			playRoom(room);
 		}
 		
