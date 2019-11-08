@@ -43,7 +43,7 @@ public class RoomSetup {
 	// Directions
 	private String[] directions = {"u", "r", "d", "l"};
 	private List<String> currentRoomList = new ArrayList<String>();
-	private List<String> roomsVisted = new ArrayList<String>();
+	private Map<String, String> roomsVisted = new HashMap<String, String>();
 	
 	// Final values to use for percentages
 	private final int ITEM_CHANCE_FOR_CLEAR_ROOM = random(10);
@@ -71,12 +71,36 @@ public class RoomSetup {
 	 */
 	public void playRoom(String room) {
 		List<String> directions = getRoom(room);
-		if(!roomsVisted.contains(room)) {
-			roomsVisted.add(room);
+		
+		//TODO -> Fix all the code segments here when you finish the classes
+		//String[] itemsOrMonsters;
+		String roomType;
+		if(room.charAt(2) == 's') {
+			//itemsOrMonsters = shopSetup();
+			roomType = "Shop";
+		}else if(room.charAt(2) == 'b') {
+			//itemsOrMonsters = shopSetup();
+			roomType = "Boss";
+		}else {
+			//itemsOrMonsters = shopSetup();
+			roomType = getRoomName();
+		}
+		
+		// TODO -> Fix this
+		if(!roomsVisted.containsKey(room)) {
+			roomsVisted.put(room, roomType);
 
 		}
+		
+		
+		/*
+		 * Edit getRoomName to check all of this 
+		 * and store the room type in a variable
+		 */
+		
+		
 		System.out.println("------------------\n\n");
-		System.out.println("Welcome to the " + getRoomName() + " room");
+		System.out.println("Welcome to the " + roomType + " room");
 		System.out.println("There are rooms to your " + directions);
 		System.out.println("Which Direction would you like to go to?");
 		String answer = scan.nextLine();
@@ -94,16 +118,40 @@ public class RoomSetup {
 		}else if(answer.equalsIgnoreCase("back")) {
 			System.out.println("\n\nYou have requested to go back to a room.");
 			System.out.println("They are listed in order of when you entered.");
-			System.out.println("[HINT]: The first letter is the direction from the room\n\nRooms Visted Are:");
+			System.out.println("[HINT]: The first letter is the direction from the room & then the room type is listed\n\nRooms Visted Are:");
 			System.out.println(roomsVisted);
+			System.out.println("\nPlease Enter Desired Room:");
 			String nextRoom2 = scan.nextLine();
 			if(roomExist(nextRoom2)) {
 				playRoom(nextRoom2);
 			}
 		}else if(!roomExist(roomName)) {
-			System.out.println("***Invalid Use***\nPlease Enter: [right, left, down, up, or back]\nRoom May Also Not Exist");
+			System.out.println("********\nInvalid Use:\nPlease Enter: [right, left, down, up, or back]\nRoom May Also Not Exist\n********\n");
 			playRoom(room);
 		}
+		
+	}
+	
+	private String[] shopSetup() {
+		/*
+		 * get items from ItemSetup
+		 * have a method that gets items according to the level
+		 */
+	}
+	
+	private String[] bossSetup() {
+		/*
+		 * get boss from MonsterSetup
+		 * According to the level has a harder boss
+		 */
+	}
+	
+	private String[] roomSetup() {
+		/*
+		 * put monsters in room and add chances to drop items when room is cleared
+		 * give monsters a chance drop items too
+		 * depending on the level put harder monsters in the room
+		 */
 		
 	}
 	
@@ -241,7 +289,7 @@ public class RoomSetup {
 	 */
 	private String getRoomName() {
 		// String List with all the room names in it
-		String[] nameList = {"Hollow", "Lava", "Hail", "Heaven", "Sky", "Water", "Fire"};
+		String[] nameList = {"Hollow", "Lava", "Hail", "Heaven", "Sky", "Water", "Fire", "Earth"};
 		// Random number for what the room type should be
 		int x = random(nameList.length -1);
 		// Returns the random room type
