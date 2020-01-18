@@ -289,7 +289,7 @@ public class RoomSetup {
 	 */
 	private String getRoomName() {
 		// String List with all the room names in it
-		String[] nameList = {"Hollow", "Lava", "Hail", "Heaven", "Sky", "Water", "Fire", "Earth"};
+		String[] nameList = {"Hollow", "Lava", "Hail", "Heaven", "Sky", "Water", "Fire", "Earth", "Shadow", "Starfall"};
 		// Random number for what the room type should be
 		int x = random(nameList.length -1);
 		// Returns the random room type
